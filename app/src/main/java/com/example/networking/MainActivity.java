@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d("MainActivity", json);
     }
 
-
 }
 
 
