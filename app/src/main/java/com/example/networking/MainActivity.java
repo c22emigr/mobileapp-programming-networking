@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -15,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
     private final String JSON_FILE = "mountains.json";
     private ArrayList<Bergen> Berg;
-    private RecyclerViewAdapter Apdatern;
+    private RecyclerViewAdapter Adaptern;
 
 
 
@@ -24,16 +26,24 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new JsonFile(this, this).execute(JSON_FILE);
+        new JsonTask(this).execute(JSON_URL);
 
         RecyclerView view = findViewById(R.id.RecyclerViewId);
-        view.setLayoutManager(new LinearLayoutManager(this));
-        view.setAdapter(adapter);
+        Berg = new ArrayList<Bergen>();
+        Adaptern = new RecyclerViewAdapter(Berg);
+        RecyclerView.setAdapter(Adaptern);
+        RecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     public void onPostExecute(String json) {
         Log.d("MainActivity", json);
     }
+    Gson gson = new Gson();
+    Type type = new TypeToken<ArrayList<Bergen>>() {}.getType();
+    private String json;
+    ArrayList<Bergen> data = gson.fromJson(json, type);
+    Bergen.addAll(data);
+    Adaptern.notifyDataSetChanged();
 
 }
