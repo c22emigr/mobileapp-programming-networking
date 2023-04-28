@@ -45,5 +45,4 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     ArrayList<Bergen> data = gson.fromJson(json, type);
     Bergen.addAll(data);
     Adaptern.notifyDataSetChanged();
-
 }
