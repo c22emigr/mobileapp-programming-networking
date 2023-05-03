@@ -1,9 +1,9 @@
 
 # Rapport
 
-**Skriv din rapport här!**
+Första steget för att hämta json-data från en webservice var att aktivera internet-access i android manifest med en kodrad, 
+sedan la jag in länken från webservicen  
 
-_Du kan ta bort all text som finns sedan tidigare_.
 
 ## Följande grundsyn gäller dugga-svar:
 
