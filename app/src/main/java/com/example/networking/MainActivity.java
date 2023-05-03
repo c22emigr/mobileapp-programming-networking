@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
-    private final String JSON_FILE = "mountains.json";
+    private RecyclerView;
     private ArrayList<Bergen> Berg;
     private RecyclerViewAdapter Adaptern;
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonTask(this).execute(JSON_URL);
 
-        RecyclerView view = findViewById(R.id.RecyclerViewId);
+        RecyclerView = findViewById(R.id.RecyclerViewId);
         Berg = new ArrayList<Bergen>();
         Adaptern = new RecyclerViewAdapter(Berg);
         RecyclerView.setAdapter(Adaptern);
@@ -37,12 +37,11 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("MainActivity", json);
-    }
     Gson gson = new Gson();
     Type type = new TypeToken<ArrayList<Bergen>>() {}.getType();
     private String json;
     ArrayList<Bergen> data = gson.fromJson(json, type);
     Bergen.addAll(data);
     Adaptern.notifyDataSetChanged();
+    }
 }
