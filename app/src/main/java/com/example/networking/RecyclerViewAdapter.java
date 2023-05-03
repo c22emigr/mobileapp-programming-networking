@@ -13,50 +13,27 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
-
-    private List<RecyclerViewItem> items;
-    private LayoutInflater layoutInflater;
-    private OnClickListener onClickListener;
-
-    RecyclerViewAdapter(Context context, List<RecyclerViewItem> items, OnClickListener onClickListener) {
-        this.layoutInflater = LayoutInflater.from(context);
-        this.items = items;
-        this.onClickListener = onClickListener;
+    private List<Bergen> Berg;
+    public RecyclerViewAdapter(List<Bergen> Berg) {
+        this.Berg = Berg;
     }
 
-    @Override
     @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(layoutInflater.inflate(R.layout.recyclerview_item, parent, false));
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(items.get(position).getTitle());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.name.setText(Berg.get(position).getName());
+        holder.size.setText(String.valueOf(Berg.get(position).getSize()));
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            title = itemView.findViewById(R.id.title);
-        }
-
-        @Override
-        public void onClick(View view) {
-            onClickListener.onClick(items.get(getAdapterPosition()));
-        }
-    }
-
-    public interface OnClickListener {
-        void onClick(RecyclerViewItem item);
+        return Berg.size();
     }
 }
 
