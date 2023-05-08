@@ -2,12 +2,19 @@
 # Rapport
 
 Första steget för att hämta json-data från en webservice var att aktivera internet-access i android manifest med en kodrad, 
-sedan la jag in länken från webservicen i MainActivity så att json-datan från länken hämtas och sparas på stringen.
+sedan la jag in länken från webservicen i MainActivity så att json-datan från länken hämtas och sparas på stringen. Samt så 
+initieras nödvändiga variabler och klasser. Det är även viktigt här att ändra till JSON_URL och JsonTask.
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
+    private RecyclerView RecyclerView;
+    private ArrayList<Bergen> Berg;
+    private RecyclerViewAdapter Adaptern;
+
+    new JsonTask(this).execute(JSON_URL);
 
 Andra steget var att lägga in en recyclerview i layouten (xml) som ska visa alla berg. Dock för att bergen ska kunna visas så måste 
-även recyclerview_item läggas in vilket jag gjorde med textviews i en annan layoutfil som visar bergen på varje sida.
+även recyclerview_item läggas in vilket jag gjorde med textviews i en ny layoutfil som visar bergen på varje sida
+i RecyclerViewen. Sedan var jag tvungen att hämta de variabler som jag behövde från main activity.
 
             <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecyclerViewId"
@@ -16,6 +23,23 @@ Andra steget var att lägga in en recyclerview i layouten (xml) som ska visa all
 
 För att min recyclerview ska fungera så har jag också gjort en RecyclerViewAdapter som gör att min data faktiskt kan visas i min recyclerview
 då den kopplar ihop JSON-datan med min recyclerview och recyclerview_item.
+
+![img.png](img.png)
+
+För att namnet på bergen och höjden på dem ska visas så har jag gjort en klass för recyclerview.viewholder som bestämmer vad som ska visas i textviewen 
+i min RecyclerView.
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+    public TextView size;
+    public TextView name;
+
+    public ViewHolder(@NonNull View itemView) {
+        super(itemView);
+        size = itemView.findViewById(R.id.size);
+        name = itemView.findViewById(R.id.name);
+    }
+}
+
 
 
 ## Följande grundsyn gäller dugga-svar:
