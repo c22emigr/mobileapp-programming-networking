@@ -2,7 +2,20 @@
 # Rapport
 
 Första steget för att hämta json-data från en webservice var att aktivera internet-access i android manifest med en kodrad, 
-sedan la jag in länken från webservicen  
+sedan la jag in länken från webservicen i MainActivity så att json-datan från länken hämtas och sparas på stringen.
+
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
+
+Andra steget var att lägga in en recyclerview i layouten (xml) som ska visa alla berg. Dock för att bergen ska kunna visas så måste 
+även recyclerview_item läggas in vilket jag gjorde med textviews i en annan layoutfil som visar bergen på varje sida.
+
+            <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RecyclerViewId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+För att min recyclerview ska fungera så har jag också gjort en RecyclerViewAdapter som gör att min data faktiskt kan visas i min recyclerview
+då den kopplar ihop JSON-datan med min recyclerview och recyclerview_item.
 
 
 ## Följande grundsyn gäller dugga-svar:
