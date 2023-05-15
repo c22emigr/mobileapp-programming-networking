@@ -24,7 +24,7 @@ i RecyclerViewen. Sedan var jag tvungen att hämta de variabler som jag behövde
 För att min recyclerview ska fungera så har jag också gjort en RecyclerViewAdapter som gör att min data faktiskt kan visas i min recyclerview
 då den kopplar ihop JSON-datan med min recyclerview och recyclerview_item.
 
-![img.png](img.png)
+![img_1.png](img_1.png) 
 
 För att namnet på bergen och höjden på dem ska visas så har jag gjort en klass för recyclerview.viewholder som bestämmer vad som ska visas i textviewen 
 i min RecyclerView.
